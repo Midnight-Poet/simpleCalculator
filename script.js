@@ -17,23 +17,29 @@ groupBtn.forEach(btn => {
 })
 operators.forEach(btn => {
     btn.addEventListener('click', () => {
-        number = parseInt(numHolder.value)
-        storage.push(number)
-        numHolder.value = ""
-        value = storage[0]
-
-        if (operators[0] == storage[1]) {
-            value += storage[2]
-        } else if (operators[1] == storage[1]) {
-            value -= storage[2]
-        } else if (operators[2] == storage[1]) {
-            value /= storage[2]
-        } else if (operators[3] == storage[1]) {
-            value *= storage[2]
+        number = parseInt(numHolder.value)       
+        if (isNaN(number) == true) {
+            window.alert('Please input a valid number')
+        } else {
+            console.log(number)
+            storage.push(number)    
+            numHolder.value = ""
+            value = storage[0]
+            
+            if (operators[0] == storage[1]) {
+                value += storage[2]
+            } else if (operators[1] == storage[1]) {
+                value -= storage[2]
+            } else if (operators[2] == storage[1]) {
+                value /= storage[2]
+            } else if (operators[3] == storage[1]) {
+                value *= storage[2]
+            }
+            storage = []
+            storage.push(value)
+            storage.push(btn)        
         }
-        storage = []
-        storage.push(value)
-        storage.push(btn)
+        
     })
 })
 operators[4].addEventListener('click', () => numHolder.value = value)
